@@ -1,0 +1,49 @@
+version: "3.8"
+services:
+  orquestrador:
+    image: node:14.16.0-alpine
+    container_name: orquestrador
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./orquestrador:/orquestrador"
+    working_dir: /orquestrador
+    command: "yarn start"
+    depends_on:
+      - providers
+      - app1
+      - app2
+
+  app1:
+    image: node:14.16.0-alpine
+    container_name: app1
+    ports:
+      - "3001:3001"
+    volumes:
+      - "./app1:/app1"
+    working_dir: /app1
+    command: "yarn start"
+    depends_on:
+      - providers
+
+  app2:
+    image: node:14.16.0-alpine
+    container_name: app2
+    ports:
+      - "3002:3002"
+    volumes:
+      - "./app2:/app2"
+    working_dir: /app2
+    command: "yarn start"
+    depends_on:
+      - providers
+
+  providers:
+    image: node:14.16.0-alpine
+    container_name: providers
+    ports:
+      - "3003:3003"
+    volumes:
+      - "./providers:/providers"
+    working_dir: /providers
+    command: "yarn start"
