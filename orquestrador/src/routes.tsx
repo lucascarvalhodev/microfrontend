@@ -2,8 +2,8 @@ import React, { Suspense, lazy } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 const Home = lazy(() => import("./pages/Home"));
-const App1 = lazy(() => import("app1/App"));
-const App2 = lazy(() => import("app2/App"));
+const App1 = lazy(() => import("./pages/MFApp1"));
+const App2 = lazy(() => import("./pages/MFApp2"));
 
 const Routes = () => (
   <Suspense fallback="carregando...">
